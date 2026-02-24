@@ -1,18 +1,54 @@
 @echo off
+title Instalador BSFechamentos
+color 0A
 
-echo ==== INSTALANDO SERVIÇO BSFechamentos ====
-echo Esse .bat irá instalar o serviço BSFechamentos, para isso é necessário ter o Node.js instalado na máquina.
+echo ======================================
+echo     INSTALADOR DO SERVICO BSFechamentos
+echo ======================================
+echo.
+
+echo Verificando Node.js...
+where node >nul 2>nul
+if %errorlevel% neq 0 (
+    echo ERRO: Node.js nao encontrado!
+    echo Instale o Node.js antes de continuar.
+    pause
+    exit /b
+)
+
+echo Node encontrado.
+echo.
+
+echo Parando servico se existir...
+net stop BSFechamentos >nul 2>nul
+
+echo.
+echo Instalando bibliotecas...
+call npm install
+if %errorlevel% neq 0 goto erro
+
+echo.
+echo Buildando servico...
+call npm run build
+if %errorlevel% neq 0 goto erro
+
+echo.
+echo Iniciando servico BSFechamentos...
+call npm run start
+if %errorlevel% neq 0 goto erro
+
+echo.
+echo ======================================
+echo INSTALACAO FINALIZADA COM SUCESSO
+echo ======================================
 pause
+exit /b
 
-echo Parando serviços semelhantes....
-net stop BSFechamentos
-
-echo Instalando Bibliotecas necessárias...
-npm run install
-
-echo Buildando serviço...
-npm run build
-
-echo Instalando serviço BSFechamentos...
-npm run start
+:erro
+color 0C
+echo.
+echo ======================================
+echo OCORREU UM ERRO DURANTE O PROCESSO
+echo ======================================
 pause
+exit /b 1
