@@ -1,4 +1,16 @@
 @echo off
+
+:: ---- FORCAR EXECUCAO COMO ADMIN ----
+net session >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Solicitando permissao de administrador...
+    powershell -Command "Start-Process '%~f0' -Verb RunAs"
+    exit /b
+)
+
+:: ---- IR PARA PASTA DO SCRIPT ----
+cd /d "%~dp0"
+
 title Instalador BSFechamentos
 color 0A
 
@@ -35,7 +47,7 @@ echo Salvando arquivo .env...
 echo WATCH_FOLDER=%WATCH_FOLDER%
 echo API_URL=%API_URL%
 echo API_KEY=%API_KEY%
-) > .env
+) > ".env"
 
 echo.
 echo Arquivo .env criado com sucesso!
