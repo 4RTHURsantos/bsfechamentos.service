@@ -1,6 +1,8 @@
 @echo off
 
-==== INSTALANDO SERVIÇO BSFechamentos ====
+echo ==== INSTALANDO SERVIÇO BSFechamentos ====
+echo Esse .bat irá instalar o serviço BSFechamentos, para isso é necessário ter o Node.js instalado na máquina.
+pause
 
 echo Parando serviços semelhantes....
 net stop BSFechamentos
@@ -13,3 +15,4 @@ npm run build
 
 echo Instalando serviço BSFechamentos...
 npm run start
+pause
