@@ -19,6 +19,27 @@ if %errorlevel% neq 0 (
 echo Node encontrado.
 echo.
 
+echo ================================
+echo CONFIGURACAO DO ARQUIVO .ENV
+echo ================================
+echo.
+
+set /p WATCH_FOLDER=Digite o caminho da pasta monitorada: 
+set /p API_URL=Digite a URL da API: 
+set /p API_KEY=Digite a API KEY: 
+
+echo.
+echo Salvando arquivo .env...
+
+(
+echo WATCH_FOLDER=%WATCH_FOLDER%
+echo API_URL=%API_URL%
+echo API_KEY=%API_KEY%
+) > .env
+
+echo.
+echo Arquivo .env criado com sucesso!
+
 echo Parando servico se existir...
 net stop BSFechamentos >nul 2>nul
 
