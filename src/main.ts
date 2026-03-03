@@ -71,6 +71,7 @@ watcher.on("add", async (filePath) => {
         nfe_key: nfe["_@Id"],
         nfe_number: nfe.ide.nNF,
         nfe_series: nfe.ide.serie,
+        issue_date: nfe.ide.dhEmi,
         document: nfe.emit.CNPJ,
         xml
       },
