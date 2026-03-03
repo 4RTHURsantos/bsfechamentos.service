@@ -61,7 +61,7 @@ watcher.on("add", async (filePath) => {
   try {
 
     const xml_parsed = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: "_@", parseTagValue: false, parseAttributeValue: false }).parse(fs.readFileSync(filePath, "utf-8"))
-    const xml = new XMLBuilder({ ignoreAttributes: false, attributeNamePrefix: "_@" }).build(xml_parsed);
+    const xml = new XMLBuilder({ ignoreAttributes: false, attributeNamePrefix: "_@", format: false}).build(xml_parsed);
     const nfe = xml_parsed.nfeProc.NFe.infNFe
 
     const response = await axios.post(
