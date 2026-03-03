@@ -68,6 +68,7 @@ watcher.on("add", async (filePath) => {
       API_URL,
       {
         event: 'nfe.new',
+        nfe_mod: nfe.ide.mod,
         nfe_key: nfe["_@Id"],
         nfe_number: nfe.ide.nNF,
         nfe_series: nfe.ide.serie,
