@@ -87,8 +87,8 @@ watcher.on("add", async (filePath) => {
 
     createLog(`XML processado com sucesso: ${response.status}`);
 
-  } catch (err) {
-    createLog(`Erro processando XML: ${err}`);
+  } catch (err: any) {
+    createLog(`Erro processando XML: ${err} - ${err.response?.data?.message || 'unknown error'}`);
     notify(`Erro processando XML: ${err}`);
   }
 
